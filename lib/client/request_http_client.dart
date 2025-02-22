@@ -12,7 +12,8 @@ class RequestHttpClient {
 
     if (response.statusCode == 200) {
       try {
-        return jsonDecode(response.body) as Map<String, dynamic>;
+        final decodedBody = utf8.decode(response.bodyBytes);
+        return jsonDecode(decodedBody) as Map<String, dynamic>;
       } catch (e) {
         throw Exception(
             'Erro ao decodificar JSON: $e\nResposta: ${response.body}');
